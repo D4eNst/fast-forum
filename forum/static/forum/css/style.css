@@ -1,0 +1,51 @@
+body {
+    padding-top: 56px;
+    font-family: Arial, sans-serif;
+}
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 60px 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.display-4 {
+    font-weight: bold;
+    color: #343a40;
+}
+.lead {
+    color: #6c757d;
+}
+.card {
+    margin-bottom: 20px;
+    border: none;
+    transition: box-shadow 0.3s;
+}
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card-title {
+    font-weight: bold;
+    color: #343a40;
+}
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+nav form {
+    display: flex;
+    justify-content: space-between;
+}
+nav form button {
+    margin-left: 5px;
+}
+.content {
+    min-height: 700px;
+}

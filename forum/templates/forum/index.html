@@ -1,0 +1,33 @@
+{% extends 'forum/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Добро пожаловать на форум настольных игр!</h1>
+            <p class="lead text-center">Здесь вы можете обсудить любимые игры, поделиться впечатлениями и мнениями.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Игра: Колонизация Марса</h5>
+                        <p class="card-text">Описание игры. Новая захватывающая стратегия, где вы ведете колонизацию Марса и развиваете свою базу.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Игра: Война Королевств</h5>
+                        <p class="card-text">Описание игры. Сражения и стратегии в мире средневековья, где вы боретесь за власть над королевствами.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Продолжение блоков с информацией об играх -->
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+    {% extends 'forum/base.html' %}
+
+    {% block content %}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Жанры</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                         <a href="{% url 'forum_home' %}"  class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Все игры</a>
+                        </li>
+                        {% for genre in genres %}
+                            <li class="list-group-item">
+                                <a href="?genre={{ genre.id }}"  class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ genre.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <h2>Главная страница форума</h2>
+                    <!-- Форма для поиска по играм -->
+                    <form method="get" action="{% url 'forum_home' %}">
+                        <div class="input-group mb-3">
+                            <label>
+                                <input type="text" class="form-control" placeholder="Поиск по игре" name="search">
+                            </label>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit" style="margin-left: 4px">Поиск</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Список форумных тем или другой контент -->
+                    {% if posts %}
+                    {% for post in posts %}
+                        <a href="{% url 'post_detail' post.id %}" style="text-decoration: none; color: inherit;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <p>{{ post.description }}</p>
+                                    <p>Написан: {{ post.created_at }}</p>
+                                    <p>К игре: <a href="{% url 'game_detail' post.game.id %}">{{ post.game.title }}</a></p>
+                                    <p>Автор: {{ post.user.username }}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    {% else %}
+                        <p>Нет постов</p>
+                    {% endif %}
+                </div>
+                {% include 'forum/pagination.html' %}
+            </div>
+        </div>
+    {% endblock %}

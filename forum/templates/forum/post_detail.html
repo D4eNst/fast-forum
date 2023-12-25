@@ -1,0 +1,50 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.description }}</p>
+                <p class="card-text">Дата создания: {{ post.created_at }}</p>
+                <hr>
+                <p class="card-text">{{ post.text }}</p>
+                <hr>
+                <p class="card-text">Автор: {{ post.user.username }}</p>
+                <!-- Дополнительные данные по посту -->
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+            <div class="mt-4">
+                <h3>Добавить комментарий</h3>
+                <form method="post" action="" class="col-md-6">
+                    {% csrf_token %}
+
+                    <textarea class="form-control" name="text" rows="4" placeholder="Введите ваш комментарий"></textarea>
+
+                    <button type="submit" class="btn btn-primary mt-3">Отправить</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Чтобы добавить комментарий, пожалуйста, <a href="{% url 'login' %}">войдите</a>.</p>
+        {% endif %}
+
+        {% if reviews %}
+            <div class="mt-4">
+                <h3>Комментарии</h3>
+                <ul class="list-group">
+                    {% for review in reviews %}
+                        <li class="list-group-item">
+                            <p>{{ review.text }}</p>
+                            <p>Автор: {{ review.user.username }}</p>
+                            <p>Дата: {{ review.created_at }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p class="mt-4">Комментариев ещё нет, станьте первым!</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Создание нового поста</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group mt-2">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <small class="form-text text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary mt-3">Создать</button>
+        </form>
+    </div>
+{% endblock %}

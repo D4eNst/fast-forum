@@ -1,0 +1,43 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Жанры</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{% url 'game_list' %}"  class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Все игры</a>
+                    </li>
+                    {% for genre in genres %}
+                        <li class="list-group-item">
+                            <a href="?genre={{ genre.id }}"  class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ genre.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <h2>Список игр</h2>
+                <div class="row">
+                    {% for game in games %}
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'game_detail' game.pk %}" style="text-decoration: none; color: inherit;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ game.title }}</h5>
+                                        <p>Год выпуска: {{ game.release_year }}</p>
+                                        <p>Издатель: {{ game.publisher }}</p>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include 'forum/pagination.html' %}
+
+        </div>
+    </div>
+{% endblock %}
